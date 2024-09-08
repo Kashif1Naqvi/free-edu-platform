@@ -49,6 +49,4 @@ export default tseslint.config({
 })
 ```
 
-```
-You're correct! To maintain a professional and scalable code structure, it's a good practice to keep the context definition in a separate file. This will make the code more modular and easier to manage as the application grows.
-```
+To maintain a professional and scalable code structure, it's a good practice to keep the context definition in a separate file. This will make the code more modular and easier to manage as the application grows.
