@@ -7,7 +7,7 @@ Session = sessionmaker(bind=engine)
 
 session = Session()
 
-names = ['Ali', 'Hassan', 'Syed Kashif Naqvi', 'Sara', 'Fatima', 'Zain', 'Imran', 'Ayesha', 'Hamza', 'Bilal', 'Mariam', 'Omar', 'Yasmin', 'Ibrahim']
+names = ['Ali', 'Hassan', 'Syed Kashif Naqvi', 'Sara', 'Fatima', 'Zain', 'Imran', 'Baneen', 'Hamza', 'Bilal', 'Mariam', 'Kashif', 'Yasmin', 'Ibrahim']
 ages = [12, 29, 10, 54, 78, 12, 21, 45, 34, 18, 60, 32, 25, 41, 23, 30, 27]
 
 for item in range(20):
