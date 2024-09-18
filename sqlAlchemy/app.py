@@ -1,5 +1,5 @@
 import random
-from sqlalchemy import or_, and_
+from sqlalchemy import or_, and_, func
 from sqlalchemy.orm import sessionmaker
 from models import engine, User
 
@@ -44,5 +44,15 @@ users = session.query(User).filter(
 for user in users:
     user_information = f"""
     Hey my name is {user.name}. I live in {user.address} My age is {user.age}.
+    """
+    # print(user_information)
+
+users = session.query(User.address, func.count(User.id))
+users = users.filter(or_(User.address == 'Karachi', User.address=='Lahore, Pakistan')).order_by('address').group_by('address')
+
+
+for address, count in users:
+    user_information = f"""
+        In this database {count} users Live in {address}
     """
     print(user_information)
