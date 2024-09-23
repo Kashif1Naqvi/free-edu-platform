@@ -66,10 +66,19 @@ for address, count in users:
 # Check User associated address
 users = session.query(User).all()
 for user in users:
-    print(user.addresses)
+    #print(user.addresses)
+    pass
 
 
 # get User associated address and address associated with User
 addresses = session.query(Address).all()
 for address in addresses:
-    print(address.user.name)
+    # print(address.user.name)
+    pass
+
+# Simple Join in query 
+user_address = session.query(User).join(Address).filter(Address.city=='Lahore').all()
+for data in user_address:
+    print(data.address)
+    print(data.age)
+    print(data.name)
