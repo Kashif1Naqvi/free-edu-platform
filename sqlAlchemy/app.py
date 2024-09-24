@@ -1,7 +1,7 @@
 import random
 from sqlalchemy import or_, and_, func
 from sqlalchemy.orm import sessionmaker
-from models import engine, User
+from models import engine, User, Address
 
 
 Session = sessionmaker(bind=engine)
@@ -15,6 +15,11 @@ for item in range(20):
     user = User(name=random.choice(names), address=random.choice(address), age=random.choice(ages))
     # session.add(user)
     # session.commit()
+
+user = session.query(User).filter(User.id==3).first()
+address = Address(city='Multan', state='Punjab', zip_code=123, user=user)
+# session.add(address)
+# session.commit()
 
 # Query Order By Age and Name
 users = session.query(User).order_by(User.name, User.address)
@@ -55,4 +60,33 @@ for address, count in users:
     user_information = f"""
         In this database {count} users Live in {address}
     """
-    print(user_information)
+    # print(user_information)
+
+
+# Check User associated address
+users = session.query(User).all()
+for user in users:
+    #print(user.addresses)
+    pass
+
+
+# get User associated address and address associated with User
+addresses = session.query(Address).all()
+for address in addresses:
+    # print(address.user.name)
+    pass
+
+# Simple Join in query 
+user_address = session.query(User).join(Address).filter(Address.city=='Lahore').all()
+for data in user_address:
+    print(data.address)
+    print(data.age)
+    print(data.name)
+
+
+# Count address each user
+
+users = session.query(User, func.count(Address.id)).join(Address).group_by(User.id).all()
+
+for user, address_count in users:
+    print(f"User: {user.name}, Address Count: {address_count}")
