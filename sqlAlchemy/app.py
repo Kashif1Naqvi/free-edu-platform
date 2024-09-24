@@ -82,3 +82,11 @@ for data in user_address:
     print(data.address)
     print(data.age)
     print(data.name)
+
+
+# Count address each user
+
+users = session.query(User, func.count(Address.id)).join(Address).group_by(User.id).all()
+
+for user, address_count in users:
+    print(f"User: {user.name}, Address Count: {address_count}")
